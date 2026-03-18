@@ -4,8 +4,7 @@ chromadb
 pysqlite3-binary
 pdfplumber
 python-docx
-rapidocr-onnxruntime
-opencv-python-headless
+pytesseract
 pdf2image
 Pillow
 streamlit-mic-recorder
