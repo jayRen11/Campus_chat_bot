@@ -1,0 +1,11 @@
+streamlit
+openai
+chromadb
+pysqlite3-binary  # 这个专门用来修复云端数据库报错
+pdfplumber
+python-docx
+rapidocr-onnxruntime
+pdf2image
+Pillow
+streamlit-mic-recorder
+gtts
