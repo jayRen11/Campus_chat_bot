@@ -64,7 +64,7 @@ def generate_notes(messages):
 
 # ================= 3. Web 界面构建 =================
 st.set_page_config(page_title="淮师大智能助手", page_icon="🏫", layout="wide")
-st.title("🏫 校园全能智能助手 (Pro+ 视觉分析版)")
+st.title("🏫 校园全能智能助手 ")
 
 tab_chat, tab_admin = st.tabs(["💬 聊天助手与视觉顾问", "🛠️ 长期知识库管理"])
 
