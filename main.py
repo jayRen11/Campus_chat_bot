@@ -1,12 +1,6 @@
 import os
-import subprocess
 import sys
-try:
-    import cv2
-except ImportError:
-    # 只要检测到云端缺少图形库报错，立刻在当前绝对路径下卸载坏包，安装无头纯净版
-    subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python", "opencv-contrib-python"])
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python-headless"])
+
 __import__('pysqlite3')
 
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
