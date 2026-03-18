@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 try:
     import cv2
 except ImportError:
@@ -7,7 +8,7 @@ except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python", "opencv-contrib-python"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python-headless"])
 __import__('pysqlite3')
-import sys
+
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 
