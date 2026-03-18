@@ -1,9 +1,11 @@
-import streamlit as st
 import os
-
+os.system("pip uninstall -y opencv-python opencv-contrib-python")
+os.system("pip install opencv-python-headless")
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+import streamlit as st
+
 from datetime import datetime
 from streamlit_mic_recorder import speech_to_text
 from gtts import gTTS
@@ -15,12 +17,10 @@ from core.llm_engine import LLMEngine
 from core.document_parser import extract_text, chunk_text
 
 # ================= 配置区 =================
-# 1. 设置 HuggingFace 国内镜像，加速 ChromaDB 启动
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
-# 2. 允许不同 AI 计算库共享底层资源，防止 LLM 和 ONNXRuntime 冲突
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+API_KEY = st.secrets["DEEPSEEK_API_KEY"] 
 
-API_KEY = st.secrets["DEEPSEEK_API_KEY"]
+os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 # ================= 1. 初始化核心引擎 (加入 Session State 缓存防重载) =================
 @st.cache_resource
