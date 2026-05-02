@@ -1,21 +1,11 @@
 import os
-import sys
-try:
-    __import__('pysqlite3')
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-except ImportError:
-    pass # 如果在本地 Windows 运行没装 pysqlite3，就忽略报错
-    
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
-
-from core.db_manager import DBManager
 import chromadb
 from chromadb.utils import embedding_functions
 
-# 下面是你原来的 class DBManager 代码...
+# 确保上一行没有乱入的 import 语句！
+
 class DBManager:
     def __init__(self, db_path="./campus_knowledge_db"):
-        # 只要运行到这里，如果没有文件夹，它会自动在项目根目录创建
         self.client = chromadb.PersistentClient(path=db_path)
         self.embedding_fn = embedding_functions.SentenceTransformerEmbeddingFunction(
             model_name="paraphrase-multilingual-MiniLM-L12-v2"
@@ -45,7 +35,6 @@ class DBManager:
             self.client.delete_collection(collection_name)
         except Exception:
             pass
-        # 重新创建空表
         if mode == "生活助手":
             self.life_db = self.client.get_or_create_collection("regulations", embedding_function=self.embedding_fn)
         else:
