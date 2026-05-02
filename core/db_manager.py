@@ -1,6 +1,14 @@
 import os
+import sys
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass # 如果在本地 Windows 运行没装 pysqlite3，就忽略报错
+    
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
+from core.db_manager import DBManager
 import chromadb
 from chromadb.utils import embedding_functions
 
